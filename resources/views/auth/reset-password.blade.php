@@ -36,7 +36,12 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <x-button>
+
+                <a class="accordiontext-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                    {{ __('Back') }}
+                </a>
+
+                <x-button class="ml-3">
                     {{ __('Reset Password') }}
                 </x-button>
             </div>

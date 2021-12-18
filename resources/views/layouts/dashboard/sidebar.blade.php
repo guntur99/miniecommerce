@@ -92,7 +92,7 @@
                     <ul class="sub-menu">
 
                         <li class="menu-item ">
-                            <a href="{{ route('create.product.seller') }}" class=" menu-link">
+                            <a href="{{ route('create.products') }}" class=" menu-link">
                                 <span class="menu-label">
                                     <span class="menu-name">Create New</span>
                                 </span>

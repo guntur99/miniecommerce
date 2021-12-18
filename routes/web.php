@@ -28,36 +28,13 @@ Route::get('/customer/products/create', [App\Http\Controllers\CustomerController
     ->middleware(['customer']);
 Route::post('/customer/create-new-order', [App\Http\Controllers\CustomerController::class, 'createOrder'])->name('createOrder.customer')
     ->middleware(['customer']);
-// Route::get('/customer/checkout', [App\Http\Controllers\CustomerController::class, 'checkout'])->name('checkout.customer')
-//     ->middleware(['customer']);
 Route::get('/customer/order-list', [App\Http\Controllers\CustomerController::class, 'orderList'])->name('orderList.customer')
-    ->middleware(['customer']);
-Route::get('/customer/products-datatable', [App\Http\Controllers\CustomerController::class, 'productsDatatable'])->name('products.datatable.customer')
-    ->middleware(['customer']);
-Route::get('/customer/search-products', [App\Http\Controllers\CustomerController::class, 'searchProducts'])->name('searchProducts.customer')
-    ->middleware(['customer']);
-Route::get('/customer/filter-products', [App\Http\Controllers\CustomerController::class, 'filterProducts'])->name('filterProducts.customer')
     ->middleware(['customer']);
 
 
 // Seller
 Route::get('/seller/products', [App\Http\Controllers\SellerController::class, 'indexProduct'])->name('index.product.seller')
     ->middleware(['seller']);
-Route::get('/seller/products/create', [App\Http\Controllers\SellerController::class, 'createProduct'])->name('create.product.seller')
-    ->middleware(['seller']);
-Route::post('/seller/products/create-new-product', [App\Http\Controllers\SellerController::class, 'createNewProduct'])->name('create.new.product.seller')
-    ->middleware(['seller']);
-Route::get('/seller/products/products-datatable', [App\Http\Controllers\SellerController::class, 'productsDatatable'])->name('products.datatable.seller')
-    ->middleware(['seller']);
-Route::post('/seller/products/update-product', [App\Http\Controllers\SellerController::class, 'update'])->name('update.product.seller')
-    ->middleware(['seller']);
-Route::post('/seller/products/delete-product', [App\Http\Controllers\SellerController::class, 'delete'])->name('delete.product.seller')
-    ->middleware(['seller']);
-Route::get('/seller/products/search-products', [App\Http\Controllers\SellerController::class, 'searchProducts'])->name('searchProducts.seller')
-    ->middleware(['seller']);
-Route::get('/seller/products/filter-products', [App\Http\Controllers\SellerController::class, 'filterProducts'])->name('filterProducts.seller')
-    ->middleware(['seller']);
-
 Route::get('/seller/transaction', [App\Http\Controllers\SellerController::class, 'indexTransaction'])->name('index.transaction.seller')
     ->middleware(['seller']);
 Route::get('/seller/transaction/create', [App\Http\Controllers\SellerController::class, 'createTransaction'])->name('create.transaction.seller')
@@ -70,12 +47,27 @@ Route::post('/seller/transaction/update-transaction', [App\Http\Controllers\Sell
     ->middleware(['seller']);
 Route::post('/seller/transaction/delete-transaction', [App\Http\Controllers\SellerController::class, 'delete'])->name('delete.transaction.seller')
     ->middleware(['seller']);
-
 Route::get('/seller/report', [App\Http\Controllers\SellerController::class, 'report'])->name('report.seller')
     ->middleware(['seller']);
 Route::get('/seller/report/filter-by', [App\Http\Controllers\SellerController::class, 'filterReports'])->name('filterReports.seller')
     ->middleware(['seller']);
 
+
+// Products
+Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('create.products')
+    ->middleware(['seller']);
+Route::post('/products/store', [App\Http\Controllers\ProductController::class, 'store'])->name('store.products')
+    ->middleware(['seller']);
+Route::post('/products/update', [App\Http\Controllers\ProductController::class, 'update'])->name('update.products')
+    ->middleware(['seller']);
+Route::post('/products/delete', [App\Http\Controllers\ProductController::class, 'delete'])->name('delete.products')
+    ->middleware(['seller']);
+Route::get('/products/datatable', [App\Http\Controllers\ProductController::class, 'datatable'])->name('datatable.products')
+    ->middleware(['auth']);
+Route::get('/products/search', [App\Http\Controllers\ProductController::class, 'search'])->name('search.products')
+    ->middleware(['auth']);
+Route::get('/products/filter', [App\Http\Controllers\ProductController::class, 'filter'])->name('filter.products')
+    ->middleware(['auth']);
 
 
 require __DIR__.'/auth.php';

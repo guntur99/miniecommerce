@@ -11,11 +11,6 @@ class SellerController extends Controller
         return view('layouts.dashboard.roles.seller.products.index');
     }
 
-    public function createProduct(){
-
-        return view('layouts.dashboard.roles.seller.products.create');
-    }
-
     public function indexTransaction(){
 
         return view('layouts.dashboard.roles.seller.transactions.index');
