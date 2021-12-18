@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-white p-t-40 p-b-90">
-                        <h4>buat order</h4>
+                        <h4>product create</h4>
                     </div>
                 </div>
             </div>

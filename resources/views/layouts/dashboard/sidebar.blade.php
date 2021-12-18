@@ -25,49 +25,22 @@
                 </a>
             </li>
 
-            <!-- Role for Admin -->
-            @if (Auth::user()->role_id == 1)
+            <!-- Role for Customer -->
+            @if (Auth::user()->role == 1)
                 <li class="menu-item ">
-                    <a href="#" class="open-dropdown menu-link">
+                    <a href="{{ route('index.product.customer') }}" class="menu-link">
                         <span class="menu-label">
-                            <span class="menu-name">Companies
-                                <span class="menu-arrow"></span>
-                            </span>
+                            <span class="menu-name">Products</span>
                         </span>
                         <span class="menu-icon">
                             <i class="icon-placeholder mdi mdi-city "></i>
                         </span>
                     </a>
-                    <!--submenu-->
-                    <ul class="sub-menu">
-
-                        <li class="menu-item ">
-                            <a href="{{ route('index.company') }}" class=" menu-link">
-                                <span class="menu-label">
-                                    <span class="menu-name">Add New</span>
-                                </span>
-                                <span class="menu-icon">
-                                    <i class="icon-placeholder  mdi mdi-table-plus "></i>
-                                </span>
-                            </a>
-                        </li>
-
-                        <li class="menu-item ">
-                            <a href="{{ route('list.company') }}" class=" menu-link">
-                                <span class="menu-label">
-                                    <span class="menu-name">Company List</span>
-                                </span>
-                                <span class="menu-icon">
-                                    <i class="icon-placeholder  mdi mdi-format-list-bulleted-type "></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="menu-item ">
                     <a href="#" class="open-dropdown menu-link">
                         <span class="menu-label">
-                            <span class="menu-name">Employees
+                            <span class="menu-name">Transactions
                                 <span class="menu-arrow"></span>
                             </span>
                         </span>
@@ -79,9 +52,9 @@
                     <ul class="sub-menu">
 
                         <li class="menu-item ">
-                            <a href="{{ route('index.employee') }}" class=" menu-link">
+                            <a href="{{ route('create.product.customer') }}" class=" menu-link">
                                 <span class="menu-label">
-                                    <span class="menu-name">Add New</span>
+                                    <span class="menu-name">Create New</span>
                                 </span>
                                 <span class="menu-icon">
                                     <i class="icon-placeholder mdi mdi-account-plus-outline "></i>
@@ -90,9 +63,9 @@
                         </li>
 
                         <li class="menu-item ">
-                            <a href="{{ route('list.employee') }}" class=" menu-link">
+                            <a href="{{ route('orderList.customer') }}" class=" menu-link">
                                 <span class="menu-label">
-                                    <span class="menu-name">Employee List</span>
+                                    <span class="menu-name">History</span>
                                 </span>
                                 <span class="menu-icon">
                                     <i class="icon-placeholder mdi mdi-account-multiple-outline "></i>
@@ -100,6 +73,94 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+
+            <!-- Role for Seller -->
+            @elseif (Auth::user()->role == 2)
+                <li class="menu-item ">
+                    <a href="#" class="open-dropdown menu-link">
+                        <span class="menu-label">
+                            <span class="menu-name">Products
+                                <span class="menu-arrow"></span>
+                            </span>
+                        </span>
+                        <span class="menu-icon">
+                            <i class="icon-placeholder mdi mdi-city "></i>
+                        </span>
+                    </a>
+                    <!--submenu-->
+                    <ul class="sub-menu">
+
+                        <li class="menu-item ">
+                            <a href="{{ route('create.product.seller') }}" class=" menu-link">
+                                <span class="menu-label">
+                                    <span class="menu-name">Create New</span>
+                                </span>
+                                <span class="menu-icon">
+                                    <i class="icon-placeholder  mdi mdi-table-plus "></i>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item ">
+                            <a href="{{ route('index.product.seller') }}" class=" menu-link">
+                                <span class="menu-label">
+                                    <span class="menu-name">Product List</span>
+                                </span>
+                                <span class="menu-icon">
+                                    <i class="icon-placeholder  mdi mdi-format-list-bulleted-type "></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="menu-item ">
+                    <a href="#" class="open-dropdown menu-link">
+                        <span class="menu-label">
+                            <span class="menu-name">Transactions
+                                <span class="menu-arrow"></span>
+                            </span>
+                        </span>
+                        <span class="menu-icon">
+                            <i class="icon-placeholder mdi mdi-city "></i>
+                        </span>
+                    </a>
+                    <!--submenu-->
+                    <ul class="sub-menu">
+
+                        <li class="menu-item ">
+                            <a href="{{ route('create.transaction.seller') }}" class=" menu-link">
+                                <span class="menu-label">
+                                    <span class="menu-name">Create New</span>
+                                </span>
+                                <span class="menu-icon">
+                                    <i class="icon-placeholder  mdi mdi-table-plus "></i>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item ">
+                            <a href="{{ route('index.transaction.seller') }}" class=" menu-link">
+                                <span class="menu-label">
+                                    <span class="menu-name">Transaction List</span>
+                                </span>
+                                <span class="menu-icon">
+                                    <i class="icon-placeholder  mdi mdi-format-list-bulleted-type "></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item ">
+                    <a href="{{ route('report.seller') }}" class="menu-link">
+                        <span class="menu-label">
+                            <span class="menu-name">Report</span>
+                        </span>
+                        <span class="menu-icon">
+                            <i class="icon-placeholder mdi mdi-city "></i>
+                        </span>
+                    </a>
                 </li>
             @endif
         </ul>
