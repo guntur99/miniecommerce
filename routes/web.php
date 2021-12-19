@@ -64,8 +64,10 @@ Route::post('/products/update', [App\Http\Controllers\ProductController::class, 
     ->middleware(['seller']);
 Route::post('/products/delete', [App\Http\Controllers\ProductController::class, 'delete'])->name('delete.products')
     ->middleware(['seller']);
+Route::get('/products/show', [App\Http\Controllers\ProductController::class, 'show'])->name('show.products')
+    ->middleware(['seller']);
 Route::get('/products/datatable', [App\Http\Controllers\ProductController::class, 'datatable'])->name('datatable.products')
-    ->middleware(['auth']);
+    ->middleware(['seller']);
 Route::get('/products/search', [App\Http\Controllers\ProductController::class, 'search'])->name('search.products')
     ->middleware(['auth']);
 Route::get('/products/filter', [App\Http\Controllers\ProductController::class, 'filter'])->name('filter.products')

@@ -51,6 +51,52 @@ class ProductController extends Controller
 
     }
 
+    public function datatable(){
+
+        $products = Product::join('categories', 'products.category', '=', 'categories.id')
+                        ->select(array('products.*', 'categories.name as category_name'))
+                        ->get();
+
+        return datatables()->of($products)->toJson();
+
+    }
+
+    public function show(){
+
+        $categories = Category::get();
+
+        return view('layouts.dashboard.roles.seller.products.show', [
+            'categories' => $categories,
+        ]);
+
+    }
+
+    public function update(){
+
+        $product               = Product::find((int)request()->id);
+        $product->name         = request()->name;
+        $product->price        = request()->price;
+        $product->stock        = request()->stock;
+        $product->weight       = request()->weight;
+        $product->category     = request()->category;
+        $product->description  = request()->description;
+
+        if(request()->thumbnail != null){
+            $product->thumbnail  = request()->thumbnail;
+        }
+        $product->save();
+
+        return response('Update Success', 200);
+
+    }
+
+    public function delete(){
+
+        Product::find(request()->id)->delete();
+
+        return response('Delete Success', 200);
+    }
+
     public function search(){
 
         request()->validate([
