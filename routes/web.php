@@ -26,7 +26,9 @@ Route::get('/customer/products', [App\Http\Controllers\CustomerController::class
     ->middleware(['customer']);
 Route::get('/customer/products/create', [App\Http\Controllers\CustomerController::class, 'create'])->name('create.product.customer')
     ->middleware(['customer']);
-Route::post('/customer/create-new-order', [App\Http\Controllers\CustomerController::class, 'createOrder'])->name('createOrder.customer')
+Route::get('/customer/checkout', [App\Http\Controllers\CustomerController::class, 'checkout'])->name('checkout.transaction.customer')
+    ->middleware(['customer']);
+Route::post('/customer/create-new-order', [App\Http\Controllers\CustomerController::class, 'createTransaction'])->name('create.transaction.customer')
     ->middleware(['customer']);
 Route::get('/customer/order-list', [App\Http\Controllers\CustomerController::class, 'orderList'])->name('orderList.customer')
     ->middleware(['customer']);
@@ -35,9 +37,9 @@ Route::get('/customer/order-list', [App\Http\Controllers\CustomerController::cla
 // Seller
 Route::get('/seller/products', [App\Http\Controllers\SellerController::class, 'indexProduct'])->name('index.product.seller')
     ->middleware(['seller']);
-Route::get('/seller/transaction', [App\Http\Controllers\SellerController::class, 'indexTransaction'])->name('index.transaction.seller')
+Route::get('/seller/checkout', [App\Http\Controllers\SellerController::class, 'checkout'])->name('checkout.transaction.seller')
     ->middleware(['seller']);
-Route::get('/seller/transaction/create', [App\Http\Controllers\SellerController::class, 'createTransaction'])->name('create.transaction.seller')
+Route::get('/seller/transaction', [App\Http\Controllers\SellerController::class, 'indexTransaction'])->name('index.transaction.seller')
     ->middleware(['seller']);
 Route::post('/seller/transaction/create-new-transaction', [App\Http\Controllers\SellerController::class, 'createNewTransaction'])->name('create.new.transaction.seller')
     ->middleware(['seller']);

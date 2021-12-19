@@ -12,50 +12,45 @@
                 </div>
             </div>
         </div>
-        <section class="pull-up">
-            <div class="container">
 
-                {{-- <form method="POST" action="{{ route('create.company') }}" enctype="multipart/form-data">
-                @csrf
+        <div class="container  pull-up">
+            <div class="row">
+                @foreach ($products as $product)
+                    <div class="col-md-6 col-lg-3 h-100 m-b-30">
+                        <div class="card ">
 
-                    <div class="card m-b-30">
-                        <div class="card-body">
-
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="website">Website</label>
-                                    <input type="text" class="form-control" id="website" name="website" placeholder="Website">
-                                </div>
-
-                                <div class="input-group mb-3 col-md-6">
-                                    <div class="form-group">
-                                        <label>Logo</label>
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="logo" name="logo">
-                                            <label class="custom-file-label" for="logo"
-                                                    >Choose file</label>
-                                        </div>
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <h3>{{ $product->name }}</h3>
+                                    <p class="text-overline text-muted">{{ $product->category_name }}</p>
+                                    <div class="m-b-10">
+                                        @if ($product->thumbnail != null)
+                                            <img src="{{ asset('atmos/light/assets/img/products/item15.png') }}" class="w-75" alt="">
+                                        @else
+                                            <img src="{{ asset('atmos/light/assets/img/products/item%20(3).jpg') }}" class="w-75" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        <div>Rp. {{ $product->price }}</div>
+                                        <div class="text-warning" style="font-size: 12px;">Stock: {{ $product->stock }} item(s)</div>
+                                    </div>
+                                    <div id="add-to-cart{{ $product->id }}">
+                                        <button type="button" onclick="addToCart({{ $product }})" class="w-100 mt-3 btn btn-dark">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" id="buat-baru" class="w-100 btn btn-dark">Buat Baru</button>
                         </div>
                     </div>
-                </form> --}}
+                @endforeach
             </div>
-
-        </section>
+        </div>
     </section>
 
+@endsection
+
+@section('custom_script')
+<script src="{{ asset('atmos/light/assets/vendor/DataTables/datatables.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script>
+</script>
 @endsection

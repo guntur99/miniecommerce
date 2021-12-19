@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Models\Product;
 use Carbon\Carbon;
 
 class CustomerController extends Controller
@@ -15,7 +16,13 @@ class CustomerController extends Controller
 
     public function index(){
 
-        return view('layouts.dashboard.roles.customer.index');
+        $products = Product::join('categories', 'products.category', '=', 'categories.id')
+                        ->select(array('products.*', 'categories.name as category_name'))
+                        ->get();
+
+        return view('layouts.dashboard.roles.customer.index', [
+            'products' => $products,
+        ]);
     }
 
     public function create(){
@@ -23,10 +30,10 @@ class CustomerController extends Controller
         return view('layouts.dashboard.roles.customer.create');
     }
 
-    // public function checkout(){
+    public function checkout(){
 
-    //     return view('layouts.dashboard.roles.customer.checkout');
-    // }
+        return view('layouts.dashboard.roles.customer.checkout');
+    }
 
     public function orderList(){
 

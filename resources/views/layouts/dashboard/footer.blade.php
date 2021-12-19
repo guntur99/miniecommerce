@@ -24,6 +24,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.5/xlsx.full.min.js"></script>
 
 @yield('custom_script')
-
+<script>
+    var cartCount = 0;
+    function addToCart(data){
+        cartCount += 1;
+        $("#cart-counter").removeClass('d-none');
+        $("#checkout-btn").removeClass('d-none');
+        $("#product-counter").html(`<div id="product-counter" class="text-overline m-b-5">Product List: `+cartCount+` item(s)</div>`);
+        $("#add-to-cart"+data.id).html(`<div class="bg-gray-200 m-t-10 p-all-10 text-overline text-success">  Added</div>`);
+        $("#product-list").append(`
+            <a href="#" class="d-block m-b-10">
+                <div class="card">
+                    <div class="card-body"> <i class="mdi mdi-cart text-dark"></i> `+data.name+`</div>
+                </div>
+            </a>`);
+    };
+</script>
 </body>
 </html>

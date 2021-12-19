@@ -30,8 +30,8 @@
                         <div id="product-counter" class="text-overline m-b-5">Product List: 0 item(s)</div>
                         <div id="product-list"></div>
                     </div>
-                    <div class="mx-2 text-center">
-                        <a href="{{ route('create.transaction.seller') }}">
+                    <div id="checkout-btn" class="mx-2 text-center d-none">
+                        <a href="{{ Auth::user()->role == 1 ? route('checkout.transaction.customer') : route('checkout.transaction.seller') }}">
                             <div class="bg-dark m-t-10 mb-2 p-all-10 text-overline text-white">Checkout </div>
                         </a>
                     </div>
