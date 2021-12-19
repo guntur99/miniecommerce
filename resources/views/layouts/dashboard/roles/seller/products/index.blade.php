@@ -21,9 +21,9 @@
                             <div class="form-row">
                                 <div class="form-group mt-3 col-md-8">
                                         <select id="category" name="category" class="form-control js-select2" required>
-                                            <option disabled selected>All Category</option>
+                                            <option value="0" {{ $filter == 0 ? "selected" : "" }}>All Category</option>
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option value="{{ $category->id }}" {{ $filter == $category->id ? "selected" : "" }}>{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                 </div>

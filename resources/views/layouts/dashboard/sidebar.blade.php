@@ -113,7 +113,7 @@
                             </a>
                         </li>
 
-                        <li class="menu-item ">
+                        {{-- <li class="menu-item ">
                             <a href="{{ route('index.product.seller') }}" class=" menu-link">
                                 <span class="menu-label">
                                     <span class="menu-name">Market</span>
@@ -122,7 +122,7 @@
                                     <i class="icon-placeholder  mdi mdi-card-bulleted "></i>
                                 </span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 
@@ -140,7 +140,7 @@
                     <!--submenu-->
                     <ul class="sub-menu">
 
-                        <li class="menu-item ">
+                        {{-- <li class="menu-item ">
                             <a href="{{ route('checkout.transaction.seller') }}" class=" menu-link">
                                 <span class="menu-label">
                                     <span class="menu-name">Checkout</span>
@@ -149,7 +149,7 @@
                                     <i class="icon-placeholder  mdi mdi-script-text "></i>
                                 </span>
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li class="menu-item ">
                             <a href="{{ route('index.transaction.seller') }}" class=" menu-link">

@@ -47,7 +47,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('index.product.' . $user);
+        return redirect()->route('show.products');
 
     }
 
@@ -114,6 +114,7 @@ class ProductController extends Controller
         return view('layouts.dashboard.roles.seller.products.index', [
             'products'      => $products,
             'categories'    => $categories,
+            'filter'        => 0,
         ]);
 
     }
@@ -127,7 +128,10 @@ class ProductController extends Controller
         $filter = request()->category;
         $products = Product::join('categories', 'products.category', '=', 'categories.id')
                         ->select(array('products.*', 'categories.name as category_name'))
-                        ->where('products.category', $filter)
+                        ->orWhere(function($query) use($filter) {
+                            if($filter != 0)
+                                $query->where('products.category', $filter);
+                        })
                         ->get();
 
         $categories = Category::get();
@@ -135,6 +139,7 @@ class ProductController extends Controller
         return view('layouts.dashboard.roles.seller.products.index', [
             'products'      => $products,
             'categories'    => $categories,
+            'filter'        => $filter,
         ]);
 
     }

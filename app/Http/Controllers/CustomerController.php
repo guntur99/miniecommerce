@@ -24,8 +24,9 @@ class CustomerController extends Controller
         $categories = Category::get();
 
         return view('layouts.dashboard.roles.customer.index', [
-            'products' => $products,
+            'products'      => $products,
             'categories'    => $categories,
+            'filter'        => 0,
         ]);
     }
 
