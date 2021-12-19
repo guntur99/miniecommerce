@@ -50,4 +50,46 @@ class ProductController extends Controller
         return redirect()->route('index.product.' . $user);
 
     }
+
+    public function search(){
+
+        request()->validate([
+            'search' => ['required', 'string'],
+        ]);
+
+        $search = request()->search;
+        $products = Product::join('categories', 'products.category', '=', 'categories.id')
+                        ->select(array('products.*', 'categories.name as category_name'))
+                        ->where('products.name','like',"%".$search."%")
+                        ->get();
+
+        $categories = Category::get();
+
+        return view('layouts.dashboard.roles.seller.products.index', [
+            'products'      => $products,
+            'categories'    => $categories,
+        ]);
+
+    }
+
+    public function filter(){
+
+        request()->validate([
+            'category' => ['required', 'integer'],
+        ]);
+
+        $filter = request()->category;
+        $products = Product::join('categories', 'products.category', '=', 'categories.id')
+                        ->select(array('products.*', 'categories.name as category_name'))
+                        ->where('products.category', $filter)
+                        ->get();
+
+        $categories = Category::get();
+
+        return view('layouts.dashboard.roles.seller.products.index', [
+            'products'      => $products,
+            'categories'    => $categories,
+        ]);
+
+    }
 }

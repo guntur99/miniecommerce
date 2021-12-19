@@ -5,9 +5,33 @@
     <section class="admin-content" id="menu-search">
         <div class="bg-dark m-b-30">
             <div class="container">
-                <div class="row">
-                    <div class="col-12 text-white p-t-40 p-b-90">
+                <div class="row p-b-60 p-t-60">
+                    <div class="col-md-8 text-white p-b-30">
                         <h4>All Product</h4>
+                        <div class="form-group col-md-6">
+                            <form method="GET" action="{{ route('search.products') }}" enctype="multipart/form-data">
+                            @csrf
+                                <input type="text" class="row form-control" id="search" name="search" placeholder="Search">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-white my-auto p-b-30">
+                        <form method="GET" action="{{ route('filter.products') }}" enctype="multipart/form-data">
+                        @csrf
+                            <div class="form-row">
+                                <div class="form-group mt-3 col-md-8">
+                                        <select id="category" name="category" class="form-control js-select2" required>
+                                            <option disabled selected>All Category</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <button type="submit" class="w-100 mt-3 btn btn-success">Filter</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -52,5 +76,6 @@
 <script src="{{ asset('atmos/light/assets/vendor/DataTables/datatables.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script>
+
 </script>
 @endsection

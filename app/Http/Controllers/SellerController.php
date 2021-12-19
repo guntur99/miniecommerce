@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class SellerController extends Controller
 {
@@ -13,17 +14,20 @@ class SellerController extends Controller
                         ->select(array('products.*', 'categories.name as category_name'))
                         ->get();
 
+        $categories = Category::get();
+
         return view('layouts.dashboard.roles.seller.products.index', [
-            'products' => $products,
+            'products'      => $products,
+            'categories'    => $categories,
         ]);
     }
 
-    public function checkout(){
+    public function indexTransaction(){
 
         return view('layouts.dashboard.roles.seller.transactions.index');
     }
 
-    public function createTransaction(){
+    public function checkout(){
 
         return view('layouts.dashboard.roles.seller.transactions.create');
     }
