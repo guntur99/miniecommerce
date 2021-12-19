@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->text('description')->nullable();
             $table->bigInteger('price');
-            $table->integer('weight')->nullable();
+            $table->integer('weight');
             $table->integer('stock');
             $table->foreignId('category')->constrained('categories')->onDelete('cascade');
             $table->timestamps();

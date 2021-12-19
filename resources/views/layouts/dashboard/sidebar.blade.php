@@ -132,7 +132,7 @@
                         <li class="menu-item ">
                             <a href="{{ route('create.transaction.seller') }}" class=" menu-link">
                                 <span class="menu-label">
-                                    <span class="menu-name">Create New</span>
+                                    <span class="menu-name">Checkout</span>
                                 </span>
                                 <span class="menu-icon">
                                     <i class="icon-placeholder  mdi mdi-table-plus "></i>

@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class SellerController extends Controller
 {
     public function indexProduct(){
 
-        return view('layouts.dashboard.roles.seller.products.index');
+        $products = Product::join('categories', 'products.category', '=', 'categories.id')
+                        ->select(array('products.*', 'categories.name as category_name'))->get();
+
+        return view('layouts.dashboard.roles.seller.products.index', [
+            'products' => $products,
+        ]);
     }
 
     public function indexTransaction(){
