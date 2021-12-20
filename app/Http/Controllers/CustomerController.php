@@ -87,7 +87,7 @@ class CustomerController extends Controller
         $transaction->status    = 2;
         $transaction->save();
 
-        return redirect()->route('orderList.customer');
+        return redirect()->route('history.customer');
     }
 
     public function checkoutList(){
@@ -103,15 +103,16 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function orderList(){
+    public function history(){
 
         $transactions = Transaction::join('users', 'transactions.customer_id', '=', 'users.id')
                             ->join('transaction_status', 'transactions.status', '=', 'transaction_status.id')
                             ->select(array('transactions.*', 'users.name as customer_name', 'transaction_status.name as status_name'))
                             ->get();
-        // dd($transactions);
+
         return view('layouts.dashboard.roles.customer.show', [
             'transactions' => $transactions,
+            'filter'       => 0,
         ]);
     }
 }

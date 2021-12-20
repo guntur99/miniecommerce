@@ -34,7 +34,7 @@ Route::get('/customer/checkout', [App\Http\Controllers\CustomerController::class
     ->middleware(['customer']);
 Route::post('/customer/update-transaction', [App\Http\Controllers\CustomerController::class, 'updateTransaction'])->name('update.transaction.customer')
     ->middleware(['customer']);
-Route::get('/customer/history', [App\Http\Controllers\CustomerController::class, 'orderList'])->name('orderList.customer')
+Route::get('/customer/history', [App\Http\Controllers\CustomerController::class, 'history'])->name('history.customer')
     ->middleware(['customer']);
 
 
@@ -75,6 +75,8 @@ Route::get('/products/datatable', [App\Http\Controllers\ProductController::class
 Route::get('/products/search', [App\Http\Controllers\ProductController::class, 'search'])->name('search.products')
     ->middleware(['auth']);
 Route::get('/products/filter', [App\Http\Controllers\ProductController::class, 'filter'])->name('filter.products')
+    ->middleware(['auth']);
+Route::get('/transactions/filter', [App\Http\Controllers\ProductController::class, 'filterTransactions'])->name('filter.transactions')
     ->middleware(['auth']);
 
 

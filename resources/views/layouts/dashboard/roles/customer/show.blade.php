@@ -31,28 +31,25 @@
                             <div class="card-body">
                                 <div class="row m-b-20">
                                     <div class="col-md-8 my-auto">
-                                        <h4 class="m-0">Summary</h4>
+                                        <h4 class="m-0"></h4>
                                     </div>
                                     <div class="col-md-4 text-right my-auto">
-                                        {{-- <form method="GET" action="{{ route('filter.products') }}" enctype="multipart/form-data">
-                                        @csrf --}}
+                                        <form method="GET" action="{{ route('filter.transactions') }}" enctype="multipart/form-data">
+                                        @csrf
                                             <div class="form-row">
                                                 <div class="form-group col-md-4"></div>
                                                 <div class="form-group mt-3 col-md-4 text-center">
-                                                        <select id="category" name="category" class="form-control js-select2" required>
-                                                            {{-- <option value="0" {{ $filter == 0 ? "selected" : "" }}>All Category</option> --}}
-                                                            {{-- @foreach ($categories as $category) --}}
-                                                                {{-- <option value="{{ $category->id }}" {{ $filter == $category->id ? "selected" : "" }}>{{ $category->name }}</option> --}}
-                                                                <option value="1" selected>Daily</option>
-                                                                <option value="2" >Monthly</option>
-                                                            {{-- @endforeach --}}
+                                                        <select id="filter_date" name="filter_date" class="form-control js-select2" required>
+                                                            <option value="0" {{ $filter == 0 ? 'selected' : '' }}>All</option>
+                                                            <option value="1" {{ $filter == 1 ? 'selected' : '' }}>Daily</option>
+                                                            <option value="2" {{ $filter == 2 ? 'selected' : '' }}>Monthly</option>
                                                         </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <button type="submit" class="w-100 mt-3 btn btn-success">Filter</button>
                                                 </div>
                                             </div>
-                                        {{-- </form> --}}
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="row ">

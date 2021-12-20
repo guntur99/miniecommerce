@@ -63,7 +63,7 @@
                         </li>
 
                         <li class="menu-item ">
-                            <a href="{{ route('orderList.customer') }}" class=" menu-link">
+                            <a href="{{ route('history.customer') }}" class=" menu-link">
                                 <span class="menu-label">
                                     <span class="menu-name">History</span>
                                 </span>
