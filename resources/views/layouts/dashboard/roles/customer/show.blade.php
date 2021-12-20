@@ -30,20 +30,29 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row m-b-20">
-                                    <div class="col-md-6 my-auto">
+                                    <div class="col-md-8 my-auto">
                                         <h4 class="m-0">Summary</h4>
                                     </div>
-                                    <div class="col-md-6 text-right my-auto">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-white shadow-none js-datepicker"><i
-                                                        class="mdi mdi-calendar"></i> Pick Date
-                                            </button>
-
-                                            <button type="button" class="btn btn-white shadow-none">All</button>
-                                            <button type="button" class="btn btn-white shadow-none">Paid</button>
-                                            <button type="button" class="btn btn-white shadow-none">UnPaid</button>
-                                        </div>
-
+                                    <div class="col-md-4 text-right my-auto">
+                                        {{-- <form method="GET" action="{{ route('filter.products') }}" enctype="multipart/form-data">
+                                        @csrf --}}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4"></div>
+                                                <div class="form-group mt-3 col-md-4 text-center">
+                                                        <select id="category" name="category" class="form-control js-select2" required>
+                                                            {{-- <option value="0" {{ $filter == 0 ? "selected" : "" }}>All Category</option> --}}
+                                                            {{-- @foreach ($categories as $category) --}}
+                                                                {{-- <option value="{{ $category->id }}" {{ $filter == $category->id ? "selected" : "" }}>{{ $category->name }}</option> --}}
+                                                                <option value="1" selected>Daily</option>
+                                                                <option value="2" >Monthly</option>
+                                                            {{-- @endforeach --}}
+                                                        </select>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <button type="submit" class="w-100 mt-3 btn btn-success">Filter</button>
+                                                </div>
+                                            </div>
+                                        {{-- </form> --}}
                                     </div>
                                 </div>
                                 <div class="row ">

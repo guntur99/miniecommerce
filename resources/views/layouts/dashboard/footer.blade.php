@@ -25,8 +25,9 @@
 
 @yield('custom_script')
 <script>
-    var cartCount = 0,
-        items = [];
+    var cartCount   = 0,
+        items       = [],
+        quantities  = [];
     function addToCart(data){
         cartCount += 1;
         $("#cart-counter").removeClass('d-none');
@@ -40,7 +41,9 @@
                 </div>
             </a>`);
         items.push(data.id);
+        quantities.push($('#quantity'+data.id).val());
         $("input[name=items]").val(items);
+        $("input[name=quantities]").val(quantities);
     };
 </script>
 </body>

@@ -58,6 +58,7 @@ class CustomerController extends Controller
     public function createCheckout(){
 
         $items      = explode(',', request()->items);
+        $quantities = explode(',', request()->quantities);
         $products   = Product::whereIn('id', $items)->get();
         $code       = "TRANS-".date_format($this->now, 'YmdHis')."-".Auth::user()->id;
 
@@ -71,7 +72,7 @@ class CustomerController extends Controller
             $transaction_details                    = new TransactionDetail;
             $transaction_details->product_id        = $product->id;
             $transaction_details->price             = $product->price;
-            $transaction_details->quantity          = rand(1,10);
+            $transaction_details->quantity          = $quantities[$key];
             $transaction_details->transaction_id    = $transactions->id;
             $transaction_details->save();
         }

@@ -58,6 +58,11 @@
                                         <div>Rp. {{ number_format($product->price, 2) }}</div>
                                         <div class="text-warning" style="font-size: 12px;">Stock: {{ $product->stock }} item(s)</div>
                                     </div>
+                                    <hr>
+                                        Quantity:
+                                    <div class="">
+                                        <input type="number" class="form-control" id="quantity{{ $product->id }}" name="quantity" onkeydown="return false;" value="1" min="1" max="{{ $product->stock }}">
+                                    </div>
                                     <div id="add-to-cart{{ $product->id }}">
                                         <button type="button" onclick="addToCart({{ $product }})" class="w-100 mt-3 btn btn-dark">Add to Cart</button>
                                     </div>

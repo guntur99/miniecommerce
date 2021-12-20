@@ -34,7 +34,7 @@ Route::get('/customer/checkout', [App\Http\Controllers\CustomerController::class
     ->middleware(['customer']);
 Route::post('/customer/update-transaction', [App\Http\Controllers\CustomerController::class, 'updateTransaction'])->name('update.transaction.customer')
     ->middleware(['customer']);
-Route::get('/customer/order-list', [App\Http\Controllers\CustomerController::class, 'orderList'])->name('orderList.customer')
+Route::get('/customer/history', [App\Http\Controllers\CustomerController::class, 'orderList'])->name('orderList.customer')
     ->middleware(['customer']);
 
 

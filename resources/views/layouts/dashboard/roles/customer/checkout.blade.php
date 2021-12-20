@@ -3,8 +3,6 @@
 @section('content')
 
     <section class="admin-content" id="menu-search">
-        <form method="POST" action="{{ route('update.transaction.customer') }}" enctype="multipart/form-data">
-        @csrf
         <div class="bg-dark m-b-30">
             <div class="container">
                 <div class="container">
@@ -19,10 +17,8 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="number" id="transaction_id" name="transaction_id" value="{{ $transactions->id }}" hidden>
-                        <input type="number" id="amount" name="amount" hidden>
                         <div class="col-md-5 text-md-right m-b-30 ml-auto">
-                            <button class="btn btn-danger {{ $transactions->status == 2 ? "d-none" : "" }}" > <i class="mdi mdi-script-text-outline"></i>Checkout Now</button>
+                            <button class="btn btn-danger {{ $transactions->status == 2 ? "d-none" : "" }}" onclick="payNow()" > <i class="mdi mdi-script-text-outline"></i>Pay Now</button>
                             <div class="media-body {{ $transactions->status == 1 ? "d-none" : "" }}">
                                 <h4 class="m-b-0 mt-2 text-white">Status: PAID </h4>
                             </div>
@@ -31,7 +27,6 @@
                 </div>
             </div>
         </div>
-        </form>
 
         @php
             $amount = 0;
@@ -137,11 +132,67 @@
 
     </section>
 
+    <div class="modal fade "   id="modalConfirmation" data-backdrop="static"  tabindex="-1" role="dialog"
+            aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Vertically Center
+                        Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="POST" action="{{ route('update.transaction.customer') }}" enctype="multipart/form-data">
+                @csrf
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <div class="">
+                                <div class="option-box">
+                                    <input id="radio-new1" name="bigradios" type="radio" checked>
+                                    <label for="radio-new1">
+                                        <span class="radio-content">
+                                            <span class="h6 d-block">Bank Trasfer <span class="badge-soft-primary badge">Available</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <input type="number" id="transaction_id" name="transaction_id" value="{{ $transactions->id }}" hidden>
+                                <input type="number" id="amount" name="amount" hidden>
+                                <div class="option-box">
+                                    <input id="radio-new2" name="bigradios" disabled type="radio">
+                                    <label for="radio-new2">
+                                        <span class="radio-content">
+                                            <span class="h6 d-block">Others <span class="badge-soft-info badge">Unavailable</span></span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <p>Total:</p>
+                                <h4>Rp.{{ number_format($amount, 2, 0) }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer ">
+                        <a href="#" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" >Cancel</a>
+                        <button type="submit" class="btn btn-success">Pay Transaction</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('custom_script')
 <script>
     var amount = @json($amount);
     $('#amount').val(amount);
+
+    function payNow(){
+        $('#modalConfirmation').modal('show');
+    }
 </script>
 @endsection

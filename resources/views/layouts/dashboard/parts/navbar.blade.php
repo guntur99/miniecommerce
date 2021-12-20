@@ -32,6 +32,7 @@
                             <div id="product-counter" class="text-overline m-b-5">Product List: 0 item(s)</div>
                             <div id="product-list"></div>
                             <input hidden class="form-control" id="items" name="items">
+                            <input hidden class="form-control" id="quantities" name="quantities">
                         </div>
                         <div id="checkout-btn" class="mx-2 text-center d-none">
                             <button type="submit" class="w-100 my-2 btn btn-dark">Checkout</button>
