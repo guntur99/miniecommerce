@@ -17,7 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->integer('customer_id');
             $table->string('transaction_code');
-            $table->string('amount');
+            $table->string('amount')->nullable();
             $table->foreignId('status')->constrained('transaction_status')->onDelete('cascade');
             $table->timestamps();
         });

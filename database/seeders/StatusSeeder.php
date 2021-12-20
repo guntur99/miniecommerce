@@ -15,12 +15,12 @@ class StatusSeeder extends Seeder
     public function run()
     {
         DB::table('transaction_status')->insert([
-            ['name' => 'Checkout',
-            'description' => 'Create Initial Order'],
-            ['name' => 'Order',
+            ['name' => 'Unpaid',
             'description' => 'Unpaid Order'],
             ['name' => 'Paid',
             'description' => 'Paid Order'],
+            ['name' => 'Accepted',
+            'description' => 'Accepted Order'],
         ]);
     }
 }

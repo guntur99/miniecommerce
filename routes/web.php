@@ -26,9 +26,13 @@ Route::get('/customer/products', [App\Http\Controllers\CustomerController::class
     ->middleware(['customer']);
 Route::get('/customer/products/create', [App\Http\Controllers\CustomerController::class, 'create'])->name('create.product.customer')
     ->middleware(['customer']);
-Route::get('/customer/checkout', [App\Http\Controllers\CustomerController::class, 'checkout'])->name('checkout.transaction.customer')
+Route::post('/customer/create-checkout', [App\Http\Controllers\CustomerController::class, 'createCheckout'])->name('create.checkout.customer')
     ->middleware(['customer']);
-Route::post('/customer/create-new-order', [App\Http\Controllers\CustomerController::class, 'createTransaction'])->name('create.transaction.customer')
+Route::get('/customer/checkout/{transaction_id}', [App\Http\Controllers\CustomerController::class, 'checkout'])->name('checkout.single.transaction.customer')
+    ->middleware(['customer']);
+Route::get('/customer/checkout', [App\Http\Controllers\CustomerController::class, 'checkoutList'])->name('checkout.transaction.customer')
+    ->middleware(['customer']);
+Route::post('/customer/update-transaction', [App\Http\Controllers\CustomerController::class, 'updateTransaction'])->name('update.transaction.customer')
     ->middleware(['customer']);
 Route::get('/customer/order-list', [App\Http\Controllers\CustomerController::class, 'orderList'])->name('orderList.customer')
     ->middleware(['customer']);
@@ -41,7 +45,7 @@ Route::get('/seller/checkout', [App\Http\Controllers\SellerController::class, 'c
     ->middleware(['seller']);
 Route::get('/seller/transaction', [App\Http\Controllers\SellerController::class, 'indexTransaction'])->name('index.transaction.seller')
     ->middleware(['seller']);
-Route::post('/seller/transaction/create-new-transaction', [App\Http\Controllers\SellerController::class, 'createNewTransaction'])->name('create.new.transaction.seller')
+Route::post('/seller/transaction/create-checkout', [App\Http\Controllers\SellerController::class, 'createCheckout'])->name('create.checkout.seller')
     ->middleware(['seller']);
 Route::get('/seller/transaction/transactions-datatable', [App\Http\Controllers\SellerController::class, 'transactionsDatatable'])->name('transactions.datatable.seller')
     ->middleware(['seller']);

@@ -25,7 +25,8 @@
 
 @yield('custom_script')
 <script>
-    var cartCount = 0;
+    var cartCount = 0,
+        items = [];
     function addToCart(data){
         cartCount += 1;
         $("#cart-counter").removeClass('d-none');
@@ -33,11 +34,13 @@
         $("#product-counter").html(`<div id="product-counter" class="text-overline m-b-5">Product List: `+cartCount+` item(s)</div>`);
         $("#add-to-cart"+data.id).html(`<div class="bg-gray-200 m-t-10 p-all-10 text-overline text-success">  Added</div>`);
         $("#product-list").append(`
-            <a href="#" class="d-block m-b-10">
+            <a class="d-block m-b-10">
                 <div class="card">
                     <div class="card-body"> <i class="mdi mdi-cart text-dark"></i> `+data.name+`</div>
                 </div>
             </a>`);
+        items.push(data.id);
+        $("input[name=items]").val(items);
     };
 </script>
 </body>

@@ -55,7 +55,7 @@
                                         @endif
                                     </div>
                                     <div class="font-weight-bold">
-                                        <div>Rp. {{ $product->price }}</div>
+                                        <div>Rp. {{ number_format($product->price, 2) }}</div>
                                         <div class="text-warning" style="font-size: 12px;">Stock: {{ $product->stock }} item(s)</div>
                                     </div>
                                     <div id="add-to-cart{{ $product->id }}">
