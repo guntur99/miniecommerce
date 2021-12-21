@@ -38,41 +38,25 @@
                     </a>
                 </li>
                 <li class="menu-item ">
-                    <a href="#" class="open-dropdown menu-link">
+                    <a href="{{ route('checkout.transaction.customer') }}" class=" menu-link">
                         <span class="menu-label">
                             <span class="menu-name">Transactions
-                                <span class="menu-arrow"></span>
                             </span>
                         </span>
                         <span class="menu-icon">
                             <i class="icon-placeholder mdi mdi-script "></i>
                         </span>
                     </a>
-                    <!--submenu-->
-                    <ul class="sub-menu">
-
-                        <li class="menu-item ">
-                            <a href="{{ route('checkout.transaction.customer') }}" class=" menu-link">
-                                <span class="menu-label">
-                                    <span class="menu-name">Checkout</span>
-                                </span>
-                                <span class="menu-icon">
-                                    <i class="icon-placeholder mdi mdi-script-text "></i>
-                                </span>
-                            </a>
-                        </li>
-
-                        <li class="menu-item ">
-                            <a href="{{ route('history.customer') }}" class=" menu-link">
-                                <span class="menu-label">
-                                    <span class="menu-name">History</span>
-                                </span>
-                                <span class="menu-icon">
-                                    <i class="icon-placeholder mdi mdi-receipt "></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
+                </li>
+                <li class="menu-item ">
+                    <a href="{{ route('history.customer') }}" class="menu-link">
+                        <span class="menu-label">
+                            <span class="menu-name">History</span>
+                        </span>
+                        <span class="menu-icon">
+                            <i class="icon-placeholder mdi mdi-receipt "></i>
+                        </span>
+                    </a>
                 </li>
 
             <!-- Role for Seller -->
@@ -127,10 +111,10 @@
                 </li>
 
                 <li class="menu-item ">
-                    <a href="#" class="open-dropdown menu-link">
+                    <a href="{{ route('index.transaction.seller') }}" class=" menu-link">
                         <span class="menu-label">
                             <span class="menu-name">Transactions
-                                <span class="menu-arrow"></span>
+                                {{-- <span class="menu-arrow"></span> --}}
                             </span>
                         </span>
                         <span class="menu-icon">
@@ -138,9 +122,9 @@
                         </span>
                     </a>
                     <!--submenu-->
-                    <ul class="sub-menu">
+                    {{-- <ul class="sub-menu">
 
-                        {{-- <li class="menu-item ">
+                        <li class="menu-item ">
                             <a href="{{ route('checkout.transaction.seller') }}" class=" menu-link">
                                 <span class="menu-label">
                                     <span class="menu-name">Checkout</span>
@@ -149,7 +133,7 @@
                                     <i class="icon-placeholder  mdi mdi-script-text "></i>
                                 </span>
                             </a>
-                        </li> --}}
+                        </li>
 
                         <li class="menu-item ">
                             <a href="{{ route('index.transaction.seller') }}" class=" menu-link">
@@ -161,7 +145,7 @@
                                 </span>
                             </a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </li>
                 <li class="menu-item ">
                     <a href="{{ route('report.seller') }}" class="menu-link">
