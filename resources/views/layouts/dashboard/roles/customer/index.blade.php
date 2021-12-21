@@ -49,12 +49,12 @@
                                     <p class="text-overline text-muted">{{ $product->category_name }}</p>
                                     <div class="m-b-10">
                                         @if ($product->thumbnail != null)
-                                            <img src="{{ asset('atmos/light/assets/img/products/item15.png') }}" class="w-75" alt="">
+                                            <img src="{{ asset('storage/thumbnails') }}/{{ $product->thumbnail }}" class="w-75" alt="">
                                         @else
                                             <img src="{{ asset('atmos/light/assets/img/products/item%20(3).jpg') }}" class="w-75" alt="">
                                         @endif
                                     </div>
-                                    <div class="font-weight-bold">
+                                    <div class="font-weight-bold mt-3">
                                         <div>Rp. {{ number_format($product->price, 2) }}</div>
                                         <div class="text-warning" style="font-size: 12px;">Stock: {{ $product->stock }} item(s)</div>
                                     </div>
