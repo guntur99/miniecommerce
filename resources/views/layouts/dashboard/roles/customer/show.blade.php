@@ -31,7 +31,7 @@
                             <div class="card-body">
                                 <div class="row m-b-20">
                                     <div class="col-md-8 my-auto">
-                                        <h4 class="m-0"></h4>
+                                        <h4 class="m-0">Summary</h4>
                                     </div>
                                     <div class="col-md-4 text-right my-auto">
                                         <form method="GET" action="{{ route('filter.transactions') }}" enctype="multipart/form-data">

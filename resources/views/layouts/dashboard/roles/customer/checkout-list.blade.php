@@ -21,7 +21,7 @@
                             <div class="card-body">
                                 <div class="row m-b-20">
                                     <div class="col-md-6 my-auto">
-                                        <h4 class="m-0">Summary</h4>
+                                        <h4 class="m-0"></h4>
                                     </div>
                                     <div class="col-md-6 text-right my-auto">
                                     </div>

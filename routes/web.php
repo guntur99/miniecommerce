@@ -47,6 +47,10 @@ Route::get('/seller/transaction', [App\Http\Controllers\SellerController::class,
     ->middleware(['seller']);
 Route::post('/seller/transaction/create-checkout', [App\Http\Controllers\SellerController::class, 'createCheckout'])->name('create.checkout.seller')
     ->middleware(['seller']);
+Route::get('/seller/transaction/{transaction_id}', [App\Http\Controllers\SellerController::class, 'detailTransaction'])->name('view.single.transaction.seller')
+    ->middleware(['seller']);
+Route::post('/seller/transaction/accept-transaction', [App\Http\Controllers\SellerController::class, 'acceptTransaction'])->name('accept.transaction.seller')
+    ->middleware(['seller']);
 Route::get('/seller/transaction/transactions-datatable', [App\Http\Controllers\SellerController::class, 'transactionsDatatable'])->name('transactions.datatable.seller')
     ->middleware(['seller']);
 Route::post('/seller/transaction/update-transaction', [App\Http\Controllers\SellerController::class, 'update'])->name('update.transaction.seller')
