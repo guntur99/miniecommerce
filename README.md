@@ -13,7 +13,7 @@ Mini E-Commerce is mini project of e-commerce that can manipulate products, tran
 <a href="https://youtu.be/X3MnbS1bTOU" target="_blank">Click Here</a>
 
 
-## Account
+## Transaction
 
 <a href="https://youtu.be/pdmivai5bb0" target="_blank">Click Here</a>
 
