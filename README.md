@@ -24,5 +24,5 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 ## Account
 
 <iframe width="420" height="315"
-src="https://www.youtube.com/embed/6pw9NIPxxXg">
+src="https://www.youtube.com/6pw9NIPxxXg">
 </iframe>
