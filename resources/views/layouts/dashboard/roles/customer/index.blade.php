@@ -74,7 +74,7 @@
                                     <div id="add-to-cart{{ $product->id }}" class="{{ $product->stock > 0 ? "" : "d-none" }}">
                                         <button type="button" onclick="addToCart({{ $product }})" class="w-100 mt-3 btn btn-dark">Add to Cart</button>
                                     </div>
-                                        <div class="bg-gray-200 m-t-10 p-all-10 text-overline text-dark {{ $product->stock < 1 ? "" : "d-none" }}">  SOLD OUT</div>
+                                    <div class="bg-gray-200 m-t-10 p-all-10 text-overline text-dark {{ $product->stock < 1 ? "" : "d-none" }}">  SOLD OUT</div>
                                 </div>
                             </div>
                         </div>
