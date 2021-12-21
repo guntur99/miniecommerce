@@ -62,10 +62,11 @@ class CustomerController extends Controller
         $products   = Product::whereIn('id', $items)->get();
         $code       = "TRANS-".date_format($this->now, 'YmdHis')."-".Auth::user()->id;
 
-        $transactions                    = new Transaction;
-        $transactions->customer_id       = Auth::user()->id;
-        $transactions->status            = 1;
-        $transactions->transaction_code  = $code;
+        $transactions                   = new Transaction;
+        $transactions->customer_id      = Auth::user()->id;
+        $transactions->status           = 1;
+        $transactions->transaction_code = $code;
+        $transactions->created_at       = $this->now;
         $transactions->save();
 
         foreach ($products as $key => $product) {
@@ -74,6 +75,7 @@ class CustomerController extends Controller
             $transaction_details->price             = $product->price;
             $transaction_details->quantity          = $quantities[$key];
             $transaction_details->transaction_id    = $transactions->id;
+            $transaction_details->created_at        = $this->now;
             $transaction_details->save();
         }
 
@@ -82,9 +84,10 @@ class CustomerController extends Controller
 
     public function updateTransaction(){
 
-        $transaction            = Transaction::find((int)request()->transaction_id);
-        $transaction->amount    = request()->amount+10000;
-        $transaction->status    = 2;
+        $transaction                = Transaction::find((int)request()->transaction_id);
+        $transaction->amount        = request()->amount+10000;
+        $transaction->status        = 2;
+        $transaction->updated_at    = $this->now;
         $transaction->save();
 
         return redirect()->route('history.customer');

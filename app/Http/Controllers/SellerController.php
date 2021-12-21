@@ -61,16 +61,18 @@ class SellerController extends Controller
 
     public function acceptTransaction(){
 
-        $transaction            = Transaction::find((int)request()->transaction_id);
-        $transaction->status    = 3;
+        $transaction                = Transaction::find((int)request()->transaction_id);
+        $transaction->status        = 3;
+        $transaction->updated_at    = $this->now;
         $transaction->save();
 
         // reduce product stock
         $transDetails   = TransactionDetail::where('transaction_id', $transaction->id)->get();
         foreach ($transDetails as $key => $item) {
-            $product        = Product::find((int)$item->product_id);
-            $stock          = $product->stock - $item->quantity;
-            $product->stock = $stock;
+            $product                = Product::find((int)$item->product_id);
+            $stock                  = $product->stock - $item->quantity;
+            $product->stock         = $stock;
+            $product->updated_at    = $this->now;
             $product->save();
         }
 

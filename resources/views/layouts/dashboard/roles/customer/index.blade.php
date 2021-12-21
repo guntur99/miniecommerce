@@ -59,10 +59,10 @@
                                         <div class="text-warning" style="font-size: 12px;">Stock: {{ $product->stock }} item(s)</div>
                                     </div>
                                     <hr>
-                                    <div class="form-row">
+                                    <div class="form-row {{ $product->stock < 1 ? "d-none" : "" }}">
                                         <div class="form-group mt-3 col-md-2"></div>
                                         <div class="form-group mt-1 col-md-4">Quantity:</div>
-                                        <div class="form-group col-md-4 {{ $product->stock < 1 ? "d-none" : "" }}">
+                                        <div class="form-group col-md-4">
                                             <select id="quantity{{ $product->id }}" name="quantity" class="form-control js-select2" required>
                                                 @for ($i = 1; $i <= $product->stock; $i++)
                                                     <option value="{{ $i }}">{{ $i }}</option>

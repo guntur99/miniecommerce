@@ -43,6 +43,7 @@ class ProductController extends Controller
         $product->stock         = request()->stock;
         $product->weight        = request()->weight;
         $product->description   = request()->description;
+        $product->created_at    = $this->now;
 
         if (request()->hasFile('thumbnail')) {
             $fileName           = time().'_'.request()->thumbnail->getClientOriginalName();
@@ -78,20 +79,26 @@ class ProductController extends Controller
 
     public function update(){
 
-        $product               = Product::find((int)request()->id);
+        $product               = Product::find((int)request()->product_id);
         $product->name         = request()->name;
         $product->price        = request()->price;
         $product->stock        = request()->stock;
         $product->weight       = request()->weight;
         $product->category     = request()->category;
         $product->description  = request()->description;
+        $product->updated_at   = $this->now;
 
-        if(request()->thumbnail != null){
-            $product->thumbnail  = request()->thumbnail;
+        if (request()->hasFile('thumbnail')) {
+            // remove previous thumbnail
+            Storage::delete('public/thumbnails/'.$product->thumbnail);
+
+            $fileName           = time().'_'.request()->thumbnail->getClientOriginalName();
+            $filePath           = request()->thumbnail->storeAs('thumbnails', $fileName, 'public');
+            $product->thumbnail = $fileName;
         }
         $product->save();
 
-        return response('Update Success', 200);
+        return redirect()->route('show.products');
 
     }
 

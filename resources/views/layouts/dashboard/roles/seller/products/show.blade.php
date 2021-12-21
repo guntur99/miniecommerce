@@ -54,16 +54,18 @@
     <!---Modal-->
     <div class="modal fade bd-example-modal-lg" id="productDetail" data-keyboard="false" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <form id="clientInvoice" class="w-100">
+            <form method="POST" action="{{ route('update.products') }}" enctype="multipart/form-data">
+                @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <input id="employee_id" hidden>
+                        <input id="product_id" name="product_id" hidden>
                         <h5 class="modal-title">Product Detail</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body ">
+
                         <div class=" w-100 p-3">
                             <div class="card-body">
 
@@ -123,7 +125,7 @@
                                         <div id="thumbnail-preview"></div>
                                     </div>
                                 </div>
-                                <div id="update-employee-data"></div>
+                                <button type="submit" class="w-100 btn btn-dark mt-3">Update Product</button>
                             </div>
                         </div>
                     </div>
@@ -230,6 +232,7 @@
             options     = "",
             thumbnail   = "";
 
+        $('#product_id').val(data.id);
         $('#name').val(data.name);
         $('#price').val(data.price);
         $('#stock').val(data.stock);
@@ -252,32 +255,34 @@
             </div>`;
         $('#thumbnail-preview').html(thumbnail);
 
-        $('#update-employee-data').html(`
-            <button type="button" id="update-product" onclick="updateProduct(`+data.id+`)" class="w-100 btn btn-dark mt-3">Update Product</button>
-        `);
-
         el.modal('show');
     };
 
-    function updateProduct(id){
+    function thumbnailChange(){
+        var filename = document.getElementById('thumbnailVal').files[0].name;
+        document.getElementById('thumbnail').value = filename;
+        console.log();
+    }
 
-        var formData = new FormData();
-        formData.append('id', id);
-        formData.append('name', $('#name').val());
-        formData.append('price', $('#price').val());
-        formData.append('stock', $('#stock').val());
-        formData.append('weight', $('#weight').val());
-        formData.append('description', $('#description').val());
-        formData.append('category', $('#category').val());
-        formData.append('thumbnail', $('#thumbnail').val());
+    // function updateProduct(id){
 
-        axios.post('{{route("update.products")}}', formData).then((res) => {
-            alert('Update Success!');
-            location.reload();
-        }).catch((err) => {
-            return 'error';
-        });
-    };
+    //     var formData = new FormData();
+    //     formData.append('id', id);
+    //     formData.append('name', $('#name').val());
+    //     formData.append('price', $('#price').val());
+    //     formData.append('stock', $('#stock').val());
+    //     formData.append('weight', $('#weight').val());
+    //     formData.append('description', $('#description').val());
+    //     formData.append('category', $('#category').val());
+    //     formData.append('thumbnail', $('#thumbnail').val());
+
+    //     axios.post('{{route("update.products")}}', formData).then((res) => {
+    //         alert('Update Success!');
+    //         location.reload();
+    //     }).catch((err) => {
+    //         return 'error';
+    //     });
+    // };
 
     function deleteComfirmation(id){
         $('#delete-button').html(`<a href="#" class="btn btn-danger" data-dismiss="modal" onclick=\'deleteCompany(`+id+`)\'>Okay</a>`);
