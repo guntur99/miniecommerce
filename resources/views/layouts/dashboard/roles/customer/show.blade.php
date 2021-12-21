@@ -79,14 +79,16 @@
                                                         <td class="align-middle">{{ $transaction->created_at }}</td>
                                                         <td class="align-middle">{{ $transaction->transaction_code }}</td>
                                                         <td class="align-middle">{{ $transaction->customer_name }}</td>
-                                                        <td class="align-middle"><span class=" text-{{ $transaction->status == 1 ? 'danger' : 'success' }}">
-                                                            <i class="mdi mdi-close-circle "></i> {{ $transaction->status_name }}</span>
+                                                        <td class="align-middle"><span class=" text-{{ $transaction->status == 1 ? 'danger' : ($transaction->status == 2 ? 'success' : 'dark') }}">
+                                                            <i class="mdi mdi-{{ $transaction->status == 1 ? 'close-circle' : ($transaction->status == 2 ? 'check-circle' : 'checkbox-intermediate') }} "></i> {{ $transaction->status_name }}</span>
                                                         </td>
                                                         <td class="align-middle"><h6 class=" m-0">{{ $transaction->amount == null ? "-" : "Rp.".number_format($transaction->amount, 2) }}</h6></td>
                                                         <td class="align-middle">
                                                             <a href="{{ url("customer/checkout/$transaction->id") }}">
                                                                 @if ($transaction->status == 1)
-                                                                    <button class="btn btn-danger " > <i class="mdi mdi-cash-usd"></i>  Pay Now</button></a>
+                                                                    <button class="btn btn-danger " > <i class="mdi mdi-cash-usd"></i>  Checkout</button></a>
+                                                                @elseif($transaction->status == 2)
+                                                                    <button class="btn btn-success " > <i class="mdi mdi-eye-settings-outline"></i>  See Detail</button></a>
                                                                 @else
                                                                     <button class="btn btn-dark " > <i class="mdi mdi-eye-settings-outline"></i>  See Detail</button></a>
                                                                 @endif

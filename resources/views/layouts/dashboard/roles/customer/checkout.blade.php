@@ -18,9 +18,10 @@
                             </div>
                         </div>
                         <div class="col-md-5 text-md-right m-b-30 ml-auto">
-                            <button class="btn btn-danger {{ $transactions->status == 2 ? "d-none" : "" }}" onclick="payNow()" > <i class="mdi mdi-script-text-outline"></i>Pay Now</button>
-                            <div class="media-body {{ $transactions->status == 1 ? "d-none" : "" }}">
-                                <h4 class="m-b-0 mt-2 text-white">Status: PAID </h4>
+                            <button class="btn btn-danger {{ $transactions->status == 1 ? "" : "d-none" }}" onclick="payNow()" > <i class="mdi mdi-script-text-outline"></i>Pay Now</button>
+                            <div class="media-body">
+                                <h4 class="m-b-0 mt-2 text-white {{ $transactions->status == 2 ? "" : "d-none" }}">Status: PAID </h4>
+                                <h4 class="m-b-0 mt-2 text-white {{ $transactions->status == 3 ? "" : "d-none" }}">Status: ACCEPTED </h4>
                             </div>
                         </div>
                     </div>
