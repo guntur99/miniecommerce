@@ -12,7 +12,7 @@ You can create a new account and change the password if you forget it.
 
 ## Product
 
-You can create new products, modify and delete them. If the stock product is 0 then it will display the status: Sold Out and cannot be added to Cart. <u>Make sure the image size is less than 1MB</u>. You can search by product name or filter by product category.
+You can create new products, modify and delete them. If the stock product is 0 then it will display the status: Sold Out and cannot be added to Cart. **Make sure the image size is less than 1MB.** You can search by product name or filter by product category.
 
 <a href="https://youtu.be/X3MnbS1bTOU" target="__blank">Click Here</a>
 
