@@ -1,7 +1,7 @@
 
 ## About Mini E-Commerce
 
-Mini E-Commerce is mini project of e-commerce that can manipulate products, transactions, reports, registers, forgot passwords and others. For demo project you can try it at the following link: <a href="http://miniecommerce.suratdigital.id/" target="__blank">Click Here</a>
+Mini E-Commerce is mini project of e-commerce that can manipulate products, transactions, reports, registers, forgot passwords and others. For demo project you can try it at the following link: <a href="https://miniecommerce.suratdigital.id/" target="__blank">Click Here</a>
 
 ## Account
 
