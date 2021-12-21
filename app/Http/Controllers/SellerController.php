@@ -7,9 +7,14 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use Carbon\Carbon;
 
 class SellerController extends Controller
 {
+    public function __construct(){
+        $this->now = Carbon::now('Asia/Jakarta');
+    }
+
     public function indexProduct(){
 
         $products = Product::join('categories', 'products.category', '=', 'categories.id')
@@ -70,6 +75,40 @@ class SellerController extends Controller
 
     public function report(){
 
-        return view('layouts.dashboard.roles.seller.report');
+        $transactions = Transaction::join('users', 'transactions.customer_id', '=', 'users.id')
+                            ->join('transaction_status', 'transactions.status', '=', 'transaction_status.id')
+                            ->select(array('transactions.*', 'users.name as customer_name', 'transaction_status.name as status_name'))
+                            ->get();
+
+        return view('layouts.dashboard.roles.seller.report', [
+            'transactions' => $transactions,
+            'filter'       => 0,
+        ]);
+    }
+
+    public function filterReports(){
+
+        request()->validate([
+            'filter_date' => ['required', 'integer'],
+        ]);
+
+        $filter = request()->filter_date;
+        $date   = $this->now;
+        $transactions = Transaction::join('users', 'transactions.customer_id', '=', 'users.id')
+                            ->join('transaction_status', 'transactions.status', '=', 'transaction_status.id')
+                            ->select(array('transactions.*', 'users.name as customer_name', 'transaction_status.name as status_name'))
+                            ->orWhere(function($query) use($filter, $date) {
+                                    if($filter == 1)
+                                        $query->whereDate('transactions.created_at', $this->now);
+                                    else if($filter == 2)
+                                        $query->whereMonth('transactions.created_at', $this->now->month);
+                                })
+                            ->get();
+
+        return view('layouts.dashboard.roles.seller.report', [
+            'transactions' => $transactions,
+            'filter'        => $filter,
+        ]);
+
     }
 }

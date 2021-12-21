@@ -148,30 +148,4 @@ class ProductController extends Controller
         ]);
 
     }
-
-    public function filterTransactions(){
-
-        request()->validate([
-            'filter_date' => ['required', 'integer'],
-        ]);
-        // dd($this->now->month);
-        $filter = request()->filter_date;
-        $date   = $this->now;
-        $transactions = Transaction::join('users', 'transactions.customer_id', '=', 'users.id')
-                            ->join('transaction_status', 'transactions.status', '=', 'transaction_status.id')
-                            ->select(array('transactions.*', 'users.name as customer_name', 'transaction_status.name as status_name'))
-                            ->orWhere(function($query) use($filter, $date) {
-                                    if($filter == 1)
-                                        $query->whereDate('transactions.created_at', $this->now);
-                                    else if($filter == 2)
-                                        $query->whereMonth('transactions.created_at', $this->now->month);
-                                })
-                            ->get();
-
-        return view('layouts.dashboard.roles.customer.show', [
-            'transactions' => $transactions,
-            'filter'        => $filter,
-        ]);
-
-    }
 }
