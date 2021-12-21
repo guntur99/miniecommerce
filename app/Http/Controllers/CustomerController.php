@@ -83,7 +83,7 @@ class CustomerController extends Controller
     public function updateTransaction(){
 
         $transaction            = Transaction::find((int)request()->transaction_id);
-        $transaction->amount    = request()->amount;
+        $transaction->amount    = request()->amount+10000;
         $transaction->status    = 2;
         $transaction->save();
 
@@ -96,6 +96,7 @@ class CustomerController extends Controller
                             ->join('transaction_status', 'transactions.status', '=', 'transaction_status.id')
                             ->select(array('transactions.*', 'users.name as customer_name', 'transaction_status.name as status_name'))
                             ->where('transactions.status', 1)
+                            ->orderBy('id', 'DESC')
                             ->get();
 
         return view('layouts.dashboard.roles.customer.checkout-list', [
@@ -109,6 +110,7 @@ class CustomerController extends Controller
                             ->join('transaction_status', 'transactions.status', '=', 'transaction_status.id')
                             ->select(array('transactions.*', 'users.name as customer_name', 'transaction_status.name as status_name'))
                             ->where('transactions.customer_id', Auth::user()->id)
+                            ->orderBy('id', 'DESC')
                             ->get();
 
         return view('layouts.dashboard.roles.customer.show', [

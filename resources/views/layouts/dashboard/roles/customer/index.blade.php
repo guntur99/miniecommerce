@@ -59,13 +59,22 @@
                                         <div class="text-warning" style="font-size: 12px;">Stock: {{ $product->stock }} item(s)</div>
                                     </div>
                                     <hr>
-                                        Quantity:
-                                    <div class="">
-                                        <input type="number" class="form-control" id="quantity{{ $product->id }}" name="quantity" onkeydown="return false;" value="1" min="1" max="{{ $product->stock }}">
+                                    <div class="form-row">
+                                        <div class="form-group mt-3 col-md-2"></div>
+                                        <div class="form-group mt-1 col-md-4">Quantity:</div>
+                                        <div class="form-group col-md-4 {{ $product->stock < 1 ? "d-none" : "" }}">
+                                            <select id="quantity{{ $product->id }}" name="quantity" class="form-control js-select2" required>
+                                                @for ($i = 1; $i <= $product->stock; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="form-group mt-3 col-md-2"></div>
                                     </div>
-                                    <div id="add-to-cart{{ $product->id }}">
+                                    <div id="add-to-cart{{ $product->id }}" class="{{ $product->stock > 0 ? "" : "d-none" }}">
                                         <button type="button" onclick="addToCart({{ $product }})" class="w-100 mt-3 btn btn-dark">Add to Cart</button>
                                     </div>
+                                        <div class="bg-gray-200 m-t-10 p-all-10 text-overline text-dark {{ $product->stock < 1 ? "" : "d-none" }}">  SOLD OUT</div>
                                 </div>
                             </div>
                         </div>

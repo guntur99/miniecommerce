@@ -65,12 +65,16 @@ class SellerController extends Controller
         $transaction->status    = 3;
         $transaction->save();
 
+        // reduce product stock
+        $transDetails   = TransactionDetail::where('transaction_id', $transaction->id)->get();
+        foreach ($transDetails as $key => $item) {
+            $product        = Product::find((int)$item->product_id);
+            $stock          = $product->stock - $item->quantity;
+            $product->stock = $stock;
+            $product->save();
+        }
+
         return redirect()->route('report.seller');
-    }
-
-    public function checkout(){
-
-        return view('layouts.dashboard.roles.seller.transactions.create');
     }
 
     public function report(){
@@ -78,6 +82,7 @@ class SellerController extends Controller
         $transactions = Transaction::join('users', 'transactions.customer_id', '=', 'users.id')
                             ->join('transaction_status', 'transactions.status', '=', 'transaction_status.id')
                             ->select(array('transactions.*', 'users.name as customer_name', 'transaction_status.name as status_name'))
+                            ->orderBy('id', 'DESC')
                             ->get();
 
         return view('layouts.dashboard.roles.seller.report', [

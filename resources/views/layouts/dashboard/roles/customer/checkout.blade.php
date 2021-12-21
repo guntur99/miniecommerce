@@ -138,8 +138,7 @@
         <div class="modal-dialog  modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Vertically Center
-                        Modal</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Transaction Payment</h5>
                     <button type="button" class="close" data-dismiss="modal"
                             aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -154,7 +153,7 @@
                                     <input id="radio-new1" name="bigradios" type="radio" checked>
                                     <label for="radio-new1">
                                         <span class="radio-content">
-                                            <span class="h6 d-block">Bank Trasfer <span class="badge-soft-primary badge">Available</span>
+                                            <span class="h6 d-block">Bank Transfer <span class="badge-soft-primary badge">Available</span>
                                             </span>
                                         </span>
                                     </label>
@@ -172,7 +171,7 @@
                             </div>
                             <div class="mt-3">
                                 <p>Total:</p>
-                                <h4>Rp.{{ number_format($amount, 2, 0) }}</h4>
+                                <h4>Rp.{{ number_format($amount+10000, 2) }}</h4>
                             </div>
                         </div>
                     </div>

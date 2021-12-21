@@ -43,8 +43,6 @@ Route::get('/customer/transactions/filter', [App\Http\Controllers\CustomerContro
 // Seller
 Route::get('/seller/products', [App\Http\Controllers\SellerController::class, 'indexProduct'])->name('index.product.seller')
     ->middleware(['seller']);
-Route::get('/seller/checkout', [App\Http\Controllers\SellerController::class, 'checkout'])->name('checkout.transaction.seller')
-    ->middleware(['seller']);
 Route::get('/seller/transaction', [App\Http\Controllers\SellerController::class, 'indexTransaction'])->name('index.transaction.seller')
     ->middleware(['seller']);
 Route::post('/seller/transaction/create-checkout', [App\Http\Controllers\SellerController::class, 'createCheckout'])->name('create.checkout.seller')
